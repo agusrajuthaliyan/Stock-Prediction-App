@@ -154,7 +154,7 @@ st.markdown("""
         position: fixed;
         left: 0;
         bottom: 0;
-        width: 100%;
+        width: calc(100% - 250px);  /* Adjust width based on sidebar width (250px) */
         background-color: #ffffff;
         padding: 10px 0;
         font-family: 'Arial', sans-serif;
@@ -164,10 +164,10 @@ st.markdown("""
         display: flex;
         justify-content: center;  /* Centers the content horizontally */
         align-items: center;      /* Centers the content vertically */
-        padding-left: 250px;      /* Adjust this padding to match your sidebar width */
+        box-sizing: border-box;   /* Ensures padding fits well within the width */
+        margin-left: 250px;       /* Offset the left margin to account for sidebar width */
     }
     .footer-content {
-        display: inline-block;
         text-align: center;
     }
     .footer a {
@@ -182,12 +182,27 @@ st.markdown("""
     .footer p {
         margin: 0;
     }
+    .footer-line {
+        display: block;         /* Forces a new line */
+    }
+    @media (max-width: 768px) {
+        .footer {
+            flex-direction: column;  /* Stack content vertically on smaller screens */
+            width: 100%;             /* Full width on smaller screens */
+            margin-left: 0;         /* Remove left margin on smaller screens */
+        }
+        .footer a {
+            display: block;          /* Stack links on mobile */
+            margin: 5px 0;           /* Add margin between links */
+        }
+    }
     </style>
     <div class="footer">
         <div class="footer-content">
-            <p>Made with ❤️ by <b>Agus Raju Thaliyan</b> | 
+            <p>Made with ❤️ by <b>Agus Raju Thaliyan</b><span class="footer-line"></span> 
             <a href="https://www.linkedin.com/in/agusrajuthaliyan" target="_blank">LinkedIn</a> | 
             <a href="mailto:agusraju43@gmail.com">agusraju43@gmail.com</a></p>
         </div>
     </div>
 """, unsafe_allow_html=True)
+
