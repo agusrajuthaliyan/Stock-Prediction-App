@@ -30,5 +30,3 @@ streamlit run app/main.py
 ```
 
 Navigate to the provided local URL in your web browser to use the app.
-
-http://192.168.53.204:8501
