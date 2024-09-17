@@ -86,3 +86,48 @@ if not hist.empty:
             st.error("Please enter valid values for all inputs.")
 else:
     st.error(f"Unable to load data for {stock_ticker}. Please check the ticker symbol.")
+
+# footer section
+st.markdown("""
+    <style>
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 10px 0;
+        font-family: 'Arial', sans-serif;
+        font-size: 14px;
+        color: #4d4d4d;
+        border-top: 1px solid #eaeaea;
+        display: flex;
+        justify-content: center;  /* Centers the content horizontally */
+        align-items: center;      /* Centers the content vertically */
+        padding-left: 250px;      /* Adjust this padding to match your sidebar width */
+    }
+    .footer-content {
+        display: inline-block;
+        text-align: center;
+    }
+    .footer a {
+        color: #0073b1;  /* LinkedIn color */
+        text-decoration: none;
+        font-weight: bold;
+        margin: 0 10px;
+    }
+    .footer a:hover {
+        text-decoration: underline;
+    }
+    .footer p {
+        margin: 0;
+    }
+    </style>
+    <div class="footer">
+        <div class="footer-content">
+            <p>Made with ❤️ by <b>Agus Raju Thaliyan</b> | 
+            <a href="https://www.linkedin.com/in/agusrajuthaliyan" target="_blank">LinkedIn</a> | 
+            <a href="mailto:agusraju43@gmail.com">agusraju43@gmail.com</a></p>
+        </div>
+    </div>
+""", unsafe_allow_html=True)
