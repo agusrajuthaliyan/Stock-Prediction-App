@@ -147,14 +147,14 @@ st.markdown("""
     _I, Agus Raju Thaliyan, am not responsible for any financial losses incurred by using this app. This is simply a predictive tool meant for learning and exploratory purposes._
 """)
 
-# footer section
+# Footer section with responsive centering
 st.markdown("""
     <style>
     .footer {
         position: fixed;
         left: 0;
         bottom: 0;
-        width: calc(100% - 250px);  /* Adjust width based on sidebar width (250px) */
+        width: 100%;
         background-color: #ffffff;
         padding: 10px 0;
         font-family: 'Arial', sans-serif;
@@ -162,13 +162,16 @@ st.markdown("""
         color: #4d4d4d;
         border-top: 1px solid #eaeaea;
         display: flex;
-        justify-content: center;  /* Centers the content horizontally */
-        align-items: center;      /* Centers the content vertically */
-        box-sizing: border-box;   /* Ensures padding fits well within the width */
-        margin-left: 250px;       /* Offset the left margin to account for sidebar width */
+        justify-content: center;  /* Center horizontally */
+        align-items: center;      /* Center vertically */
+        z-index: 1000;            /* Ensure it is above other elements */
     }
     .footer-content {
-        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 1200px;        /* Adjust width to ensure content is not too wide */
+        margin: 0 auto;
     }
     .footer a {
         color: #0073b1;  /* LinkedIn color */
@@ -182,27 +185,28 @@ st.markdown("""
     .footer p {
         margin: 0;
     }
-    .footer-line {
-        display: block;         /* Forces a new line */
-    }
-    @media (max-width: 768px) {
+
+    /* Adjust footer alignment based on screen width */
+    @media (min-width: 1200px) {
         .footer {
-            flex-direction: column;  /* Stack content vertically on smaller screens */
-            width: 100%;             /* Full width on smaller screens */
-            margin-left: 0;         /* Remove left margin on smaller screens */
+            padding-left: 250px; /* Adjust based on sidebar width */
+            padding-right: 250px; /* Adjust based on sidebar width */
         }
-        .footer a {
-            display: block;          /* Stack links on mobile */
-            margin: 5px 0;           /* Add margin between links */
+    }
+    @media (max-width: 1199px) {
+        .footer {
+            padding-left: 0;
+            padding-right: 0;
         }
     }
     </style>
     <div class="footer">
         <div class="footer-content">
-            <p>Made with ❤️ by <b>Agus Raju Thaliyan</b><span class="footer-line"></span> 
-            <a href="https://www.linkedin.com/in/agusrajuthaliyan" target="_blank">LinkedIn</a> | 
-            <a href="mailto:agusraju43@gmail.com">agusraju43@gmail.com</a></p>
+            <p><b>Made with ❤️ by Agus Raju Thaliyan</b></p>
+            <p>
+                <a href="https://www.linkedin.com/in/agusrajuthaliyan" target="_blank">LinkedIn</a> | 
+                <a href="mailto:agusraju43@gmail.com">agusraju43@gmail.com</a>
+            </p>
         </div>
     </div>
 """, unsafe_allow_html=True)
-
