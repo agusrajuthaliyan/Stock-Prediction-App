@@ -62,6 +62,55 @@ if not hist.empty:
     with col3:
         st.metric("Mean Absolute Error (MAE)", f"{mae:.4f}")
 
+    # # Understanding MSE and Feedback
+    # st.subheader("Understanding the Evaluation Metric (MSE)")
+    # st.write("""
+    # Mean Squared Error (MSE) is a metric that tells us how far off our model's predictions are from the actual values.
+    # A lower MSE value indicates better accuracy, as it means the predicted stock prices are closer to the real prices.
+
+    # - **MSE measures the average squared difference between predicted values and actual values.**
+    # - The closer MSE is to zero, the better the model's performance.
+
+    # While a low MSE suggests that the model is performing well, it's important to keep in mind that no model is perfect,
+    # especially in highly volatile areas like stock market prediction. This model should be used as a guide, not as a foolproof prediction tool.
+    # """)
+
+    # # Dynamic feedback based on MSE value
+    # if mse < 10:
+    #     st.success("The model's performance is quite good! The MSE is low, meaning the model predictions are fairly close to actual values. You can rely on this model for general guidance.")
+    # elif mse < 50:
+    #     st.warning("The model is somewhat accurate but shows room for improvement. It’s best to treat the predictions cautiously, especially during market fluctuations.")
+    # else:
+    #     st.error("The model’s performance is not optimal. The high MSE indicates large errors in predictions. It might not be safe to rely heavily on this model for decision-making.")
+
+        # Understanding MSE and Feedback
+    with st.expander("Understanding the Evaluation Metric (MSE)", expanded=False):
+        st.markdown("""
+        **Mean Squared Error (MSE)** is a key metric that helps evaluate the performance of the prediction model.
+
+        - MSE measures the **average squared difference** between the actual and predicted values.
+        - A **lower MSE** indicates better model accuracy, with predictions closer to the real stock prices.
+        
+        ### Quick Guide:
+        - **MSE ≈ 0**: Excellent model performance, predictions are highly accurate.
+        - **MSE > 50**: The model struggles with accurate predictions, especially in volatile markets.
+        
+        > _Note: Even a low MSE cannot fully guarantee perfect predictions in stock markets due to inherent volatility._
+        """)
+
+    # Dynamic feedback based on MSE value
+    st.subheader("Model Reliability Feedback")
+    col1, col2, col3 = st.columns([1, 4, 1])
+
+    with col2:
+        if mse < 10:
+            st.success("✅ The model is performing **very well** with a low MSE. Predictions are quite reliable for general guidance.")
+        elif mse < 50:
+            st.warning("⚠️ The model is **moderately accurate**, but there is room for improvement. Be cautious, especially in volatile market conditions.")
+        else:
+            st.error("❌ The model's MSE is **high**, indicating large errors in predictions. It's not safe to rely heavily on this model.")
+
+
     # Plot model performance
     plot_model_performance(y_test, y_pred)
 
@@ -86,6 +135,17 @@ if not hist.empty:
             st.error("Please enter valid values for all inputs.")
 else:
     st.error(f"Unable to load data for {stock_ticker}. Please check the ticker symbol.")
+
+# Add a disclaimer note
+st.markdown("""
+    ---
+    **Important Note:**  
+    This app utilizes a **Random Forest** model for predicting stock prices, which is just one approach to financial forecasting.  
+    - **Do not** rely solely on this tool for making financial decisions without understanding the market deeply.  
+    - Stock markets are unpredictable, and no model can guarantee future prices accurately.
+    
+    _I, Agus Raju Thaliyan, am not responsible for any financial losses incurred by using this app. This is simply a predictive tool meant for learning and exploratory purposes._
+""")
 
 # footer section
 st.markdown("""
